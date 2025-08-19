@@ -1,0 +1,40 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# ======================
+# Entornos virtuales
+# ======================
+venv/
+env/
+ENV/
+.venv/
+
+# ======================
+# Django
+# ======================
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# Evitar archivos de migraciones compiladas
+*.mo
+
+# Configuración local (si la usas)
+local_settings.py
+
+# ======================
+# Archivos sensibles
+# ======================
+.env
+
+
+
