@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from  django.http import HttpResponse
+from  .models import Certification
 
 # Create your views here.
 
-def helloworld(request): 
-    return HttpResponse ('<h1>Hello World</h1>')
+def home(request): 
+    certifications = Certification.objects.all()
+
+    return render(request, 'home.html', {'certifications': certifications})

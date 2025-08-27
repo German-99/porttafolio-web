@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications</title>
+</head>
+<body>
+    <h1>Certifications</h1>
+
+{% for certification in certifications %}
+
+    <h2>{{certification.title}}</h2>
+    <p>{{certification.description}}</p>
+    <img src="{{certification.image.url}}" alt="">
+    <br>
+    <p><img src="{{certification.lenguages.icon.url}}" alt="" width="25" height="25">{{certification.lenguages.choice}}</p>
+
+    {% if certification.url %}
+        <a href="{{certification.url}}">View Certificate-Codérex</a>
+    {% endif %}
+
+{% endfor %} 
+<br>
+</body>
+</html>    

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+</head>
+<body>
+    <h1>Projects</h1>
+
+{% for project in projects %}
+
+    <h2>{{project.title}}</h2>
+    <a href="{{project.url}}<">{{project.url}}</a>
+    <p>{{project.description}}</p>
+    <img src="{{project.image.url}}" alt="">
+    <br>
+
+    {% for lenguage in project.lenguages.all %}
+
+        <p><img src="{{lenguage.icon.url}}" alt="" width="25" height="25"> {{lenguage.choice}}</p>
+    
+    {% endfor %} 
+
+    {% if certification.url %}
+        <a href="{{certification.url}}">Ver certificado</a>
+    {% endif %}
+
+
+    <img src="{{project.gif.url}}" alt="" width="710" height="400" >
+{% endfor %} 
+</body>
+</html>  
