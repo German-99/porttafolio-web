@@ -3,7 +3,7 @@ from  .models import Certification
 
 # Create your views here.
 
-def home(request): 
-    certifications = Certification.objects.all()
+def certifications(request): 
+    certifications = Certification.objects.all().order_by('date')
 
     return render(request, 'home.html', {'certifications': certifications})

@@ -9,12 +9,22 @@
 </head>
 <body>
 {% extends "layout.html" %}
-{% block content %}
-            <h1>Projects</h1>
+    {% block content %}
+                <h1>{{project.title}}</h1>
+                <h3>{{project.date}}</h3>
+                <a href="{{project.url}}">{{project.url}}</a>
+                <p>Technologies:</p>
+                {% for lenguage in project.lenguages.all %}
 
+                    <p><img src="{{lenguage.icon.url}}" alt="" width="25" height="25"> {{lenguage.choice}}</p>
+                
+                {% endfor %}
+                <p>{{project.largeDescription}}</p>
+                <img src="{{project.gif.url}}" alt="" width="710" height="400" >
             {% for project in projects %}
-                <h1><a href="{% url 'blog:project_detail' project.id %}">{{ project.title }}</a></h1>
-                <a href="{{project.url}}<">{{project.url}}</a>
+
+                <h2>{{project.title}}</h2>
+                <a href="{{project.url}}">{{project.url}}</a>
                 <p>{{project.description}}</p>
                 <img src="{{project.image.url}}" alt="">
                 <br>
@@ -26,13 +36,12 @@
                 {% endfor %} 
 
                 {% if project.date %}
-                    <p> {{project.date}} </p>
+                    <p> {{project.date }} </p>
                 {% endif %}
 
+            {% endfor %} 
+    {% endblock %}
 
-                <img src="{{project.gif.url}}" alt="" width="710" height="400" >
-            {% endfor %}
 
-{% endblock %}
 </body>
-</html>  
+</html>
