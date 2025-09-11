@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</head>
-<body>
+
 {% extends "layout.html" %}
+{% block title %}Projects{% endblock %}
 {% block content %}
-            <h1>Projects</h1>
+            <h1 class="text-center col-sm-12 col-md-12 col-lg-12 mt-4 text-white">Projects</h1>
 
             {% for project in projects %}
-                <h1><a href="{% url 'blog:project_detail' project.id %}">{{ project.title }}</a></h1>
-                <a href="{{project.url}}<">{{project.url}}</a>
-                <p>{{project.description}}</p>
-                <img src="{{project.image.url}}" alt="">
-                <br>
-
-                {% for lenguage in project.lenguages.all %}
-
-                    <p><img src="{{lenguage.icon.url}}" alt="" width="25" height="25"> {{lenguage.choice}}</p>
-                
-                {% endfor %} 
-
-                {% if project.date %}
-                    <p> {{project.date}} </p>
-                {% endif %}
-
-
-                <img src="{{project.gif.url}}" alt="" width="710" height="400" >
+            <div class="card bg-dark container w-75 py-3 my-2" style="max-width: 3000px;">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-4 col-12">
+                        <img  src="{{project.image.url}}" class="img-fluid rounded-start" alt="img-project">
+                    </div>
+                     <div class="col-md-8 col-12">
+                        <div class="card-body">
+                            <h3 class="card-title text-white"><a class="text-white" href="{% url 'blog:project_detail' project.id %}">{{ project.title }}</a></h3>
+                            <p class="text-white">Github link: <a href="{{project.url}}<">{{project.url}}</a></p>
+                            <p class="text-white">{{project.description}}</p>
+                            <div class="contasiner">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <p class="text-white mb-2">Technologies:</p>
+                                    </div>
+                                    <div class="col d-flex align-items-center flex-wrap">
+                                        {% for lenguage in project.lenguages.all %}
+                                        <div class="d-flex align-items-center me-4 mb-2"> 
+                                            <img class="me-1" src="{{lenguage.icon.url}}" alt="" width="25" height="25">
+                                            <span class="text-white">{{lenguage.choice}}</span>
+                                        </div>                
+                                        {% endfor %}  
+                                    </div>
+                                    <p class="card-text"><small class="text-white">
+                                        {% if project.date %}
+                                            <p>Date: {{project.date}} </p>
+                                        {% endif %}
+                                    </small></p>
+                                </div>
+                            </div>
+                           
+                            </p>
+                        </div>
+                     </div>
+                </div>
+            </div>
             {% endfor %}
-
 {% endblock %}
-</body>
-</html>  

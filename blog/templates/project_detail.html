@@ -1,47 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</head>
-<body>
 {% extends "layout.html" %}
-    {% block content %}
-                <h1>{{project.title}}</h1>
-                <h3>{{project.date}}</h3>
-                <a href="{{project.url}}">{{project.url}}</a>
-                <p>Technologies:</p>
-                {% for lenguage in project.lenguages.all %}
-
-                    <p><img src="{{lenguage.icon.url}}" alt="" width="25" height="25"> {{lenguage.choice}}</p>
-                
-                {% endfor %}
-                <p>{{project.largeDescription}}</p>
-                <img src="{{project.gif.url}}" alt="" width="710" height="400" >
-            {% for project in projects %}
-
-                <h2>{{project.title}}</h2>
-                <a href="{{project.url}}">{{project.url}}</a>
-                <p>{{project.description}}</p>
-                <img src="{{project.image.url}}" alt="">
-                <br>
-
-                {% for lenguage in project.lenguages.all %}
-
-                    <p><img src="{{lenguage.icon.url}}" alt="" width="25" height="25"> {{lenguage.choice}}</p>
-                
-                {% endfor %} 
-
-                {% if project.date %}
-                    <p> {{project.date }} </p>
-                {% endif %}
-
-            {% endfor %} 
-    {% endblock %}
-
-
-</body>
-</html>
+{% block content %}
+<div class="container-fluid text-center text-white">
+  <h1>{{project.title}}</h1>
+</div>
+<div class="container bg-dark text-white py-3 my-3">
+  <p>Date: {{project.date}} </p>
+  <p class="mb-1">Github link: <a href="{{project.url}}">{{project.url}}</a></p>
+  <div class="container-fluid w-100 pt-2">
+    <div class="row">
+      <div class="col-auto ps-0">
+        <p class="mb-1">Technologies:</p>
+      </div>
+       <div class="col d-flex align-items-center">
+          {% for lenguage in project.lenguages.all %}
+          <div class="d-flex align-items-center me-4"> 
+            <img class="me-1" src="{{lenguage.icon.url}}" alt="" width="25" height="25">
+            <span>{{lenguage.choice}}</span>
+          </div>                
+          {% endfor %}  
+        </div>
+    </div>
+  </div>
+  <div class="container w-75 text-center pt-2 align-items-center">
+    <p class="pt-2">{{project.largeDescription}}</p>
+    <img class="img-fluid pt-2" src="{{project.gif.url}}" alt="" width="710" height="400" >
+  </div>
+</div>
+{% endblock %}
