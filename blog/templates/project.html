@@ -7,8 +7,8 @@
             {% for project in projects %}
             <div class="card bg-dark container w-75 py-3 my-2" style="max-width: 3000px;">
                 <div class="row g-0 align-items-center">
-                    <div class="col-md-4 col-12">
-                        <img  src="{{project.image.url}}" class="img-fluid rounded-start" alt="img-project">
+                    <div class="col-md-4 col-12 d-flex justify-content-center align-items-center">
+                        <img  src="{{project.image.url}}" class="img-fluid rounded" style="object-fit: contain;" alt="img-project">
                     </div>
                      <div class="col-md-8 col-12">
                         <div class="card-body">

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- About Section -->
+    <div id="About" class="row align-items-center mb-5">
+        <div class="col-md-12 text-center">
+            <h2 class="display-4 text-white mb-3">Germán Anguiano</h2>
+            <h3 class="text-primary mb-3 text-white">Production Multimedia Engineer</h3>
+            <div class="row">
+                <div class="col-xl-6 col-sm-12">
+                    <div class="row alogn-items-center text-light">
+                        <h4>About me</h4>
+                    </div>
+                    <p class="lead text-light">
+                        I’m a 27-year-old from Mexico with a background in software documentation. This experience gave me a solid understanding of how software systems are designed and structured. I’m currently focused on becoming a full stack developer, building projects and continuously improving my programming skills.
+                    </p>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="row alogn-items-center text-light">
+                        <h4>Technologies</h4>
+                    </div>
+                    <p class="lead text-light">
+                        I’m a 27-year-old from Mexico with a background in software documentation. This experience gave me a solid understanding of how software systems are designed and structured. I’m currently focused on becoming a full stack developer, building projects and continuously improving my programming skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="bg-light my-5">
+
+    <!-- Projects Section -->
+    <div id="Projects" class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center text-white mb-4">Projects</h2>
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center">
+                            <img src="{% static 'images/github-2.png' %}" class="img-fluid rounded-circle" alt="GitHub" style="max-width: 250px;">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="card-title">GITHUB</h3>
+                            <p class="card-text">
+                                As a Software Engineer, I use GitHub to showcase the projects I've developed.
+                            </p>
+                            <br>
+                            <a href="https://github.com/German-99" target="_blank" class="btn btn-primary btn-lg">
+                                View GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+  
