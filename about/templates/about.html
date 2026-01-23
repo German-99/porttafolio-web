@@ -10,7 +10,7 @@
         <div class="col-md-12 text-center">
             <h2 class="display-4 text-white mb-3">Germán Anguiano</h2>
             <h3 class="text-primary mb-3 text-white">Production Multimedia Engineer</h3>
-            <div class="row">
+            <div class="row pt-4">
                 <div class="col-xl-6 col-sm-12">
                     <div class="row alogn-items-center text-light">
                         <h4>About me</h4>
@@ -20,12 +20,36 @@
                     </p>
                 </div>
                 <div class="col-xl-6 col-sm-12">
-                    <div class="row alogn-items-center text-light">
-                        <h4>Technologies</h4>
+                    <div class="row alogn-items-center text-light mt-5 mt-lg-1">
+                        <h4 class="pb-3">Technologies</h4>
                     </div>
-                    <p class="lead text-light">
-                        I’m a 27-year-old from Mexico with a background in software documentation. This experience gave me a solid understanding of how software systems are designed and structured. I’m currently focused on becoming a full stack developer, building projects and continuously improving my programming skills.
-                    </p>
+                    <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+
+                        <div class="carousel-inner text-center">
+
+                            {% for lenguage in lenguages %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="3000">
+
+                                <img src="{{ lenguage.icon.url }}"
+                                    class="d-block mx-auto"
+                                    style="max-height: 120px; object-fit: contain;"
+                                    alt="{{ lenguage.choice }}">
+                                <h4 class="text-white pt-3">{{lenguage.choice}}</h4>    
+
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>
