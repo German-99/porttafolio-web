@@ -11,6 +11,22 @@
 </div>
 
 {% for certification in certifications %}
+<div class="container-fluid">
+    <div class="col-2">
+        <div class="card bg-dark text-white px-2">
+            <div class="row my-2 align-items-center">
+                <div class="col-sm-12 col-md-12 col-lg-2 mb-1 text-center">
+                    <img src="{{certification.lenguages.icon.url}}" class="img-fluid" alt="certificates" style="max-width: 45px;">
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-10">
+                     <h5 class="card-title">{{certification.title}}</h5>
+                     <p class="card-text">{{ certification.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="container my-4">
         <div class="card shadow-lg border-0 bg-dark text-white">
@@ -24,7 +40,7 @@
                 <div class="row mb-3">
                      <div class="col-md-4">
                         <img class="img-fluid me-1" src="{{certification.lenguages.icon.url}}" alt="certificate" width="25" height="25"
-                        <span>{{ certification.lenguages.choice }}</span>
+                        <span>{{ certification.lenguages.choice }}</span>>
                      </div>
 
                      {% if certification.date %}
@@ -48,5 +64,4 @@
             
 </div>
     {% endfor %} 
-    <br>
 {% endblock %}  
