@@ -174,3 +174,9 @@ footer {
 #hover-link:hover {
      color: aqua;
 }
+
+.master-item:hover {
+    color: aqua;
+    text-decoration: underline;
+}
+
