@@ -178,5 +178,45 @@ footer {
 .master-item:hover {
     color: aqua;
     text-decoration: underline;
+    cursor: pointer;
 }
+
+
+
+.cont-mast {
+    position: relative;
+}
+
+#backBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+[class*="s-detail"] {
+  width: 100%;
+  float: left;
+}
+
+.detail {
+    position: absolute;
+    z-index: 11;
+}
+
+@media only screen and (min-width: 786px) {
+    .col-2 {
+        width: 25%;
+    }
+
+    .col-10 {
+        width: 75%;
+    }
+
+    .detail {
+        position: static;
+    }
+}
+
 

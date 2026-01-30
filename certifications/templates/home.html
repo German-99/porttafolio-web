@@ -5,26 +5,27 @@
 {% block content %}
 <div class="container">
     <div class="row">
-    <h1 class="text-center col-sm-12 col-md-12 col-lg-12 mt-4 text-white">Certifications</h1>
+    <h1 class="text-center col-sm-12 col-md-12 col-lg-12 my-4 text-white">Certifications</h1>
     </div>
 </div>
-{% for certification in certifications %}
-<div class="container-fluid">
-    <div class="col-lg-2 col-sm-12 master M-detail">
+<div class="container-fluid cont-mast">
+    <div class="col-2 master s-detail">
+        {% for certification in certifications %}
         <div class="card bg-dark text-white px-3 py-2 mb-3 ">
             <div class="row my-2 align-items-center">
                 <div class="col-2 mb-1 text-center">
                     <img src="{{certification.lenguages.icon.url}}" class="img-fluid" alt="certificates" style="max-width: 45px;">
                 </div>
-                <div class="col-10 px-3 M-detail">
+                <div class="col-10 px-3">
                      <h5 class="card-title master-item">{{certification.title}}</h5>
                      <p class="card-text">{{ certification.description }}</p>
                 </div>
             </div>
         </div>
+         {% endfor %}
     </div>
-    <div class="col-lg-10 col-sm-12">
-       
+    <div class="col-10 s-detail">
+       <button id="backBtn" class="hidden-md">back</button>
     </div>
 </div>
 
@@ -62,7 +63,7 @@
         </div>
     </div>-->
 
-            
-</div>
-    {% endfor %} 
+    <div class="col-10 s-detail">
+       <button id="backBtn" class="hidden-md">back</button>
+    </div>
 {% endblock %}  
