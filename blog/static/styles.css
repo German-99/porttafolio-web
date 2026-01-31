@@ -175,7 +175,6 @@ footer {
      color: aqua;
 }
 
-.master-item:hover,
 .active-item {
     color: aqua;
     text-decoration: underline;

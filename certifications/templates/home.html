@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="container-fluid cont-mast">
-    <div class="col-sm-12 col-md-3 master">
+    <div class="col-12 col-md-3 master">
         {% for certification in certifications %}
         <div class="card bg-dark text-white mb-3 px-1">
             <div class="row py-3 align-items-center">
@@ -17,19 +17,28 @@
                     <img src="{{certification.lenguages.icon.url}}" class="img-fluid" alt="certificates" style="max-width: 40px;">
                 </div>
                 <div class="col-12 col-md-10 px-4">
-                     <h5 class="card-title master-item">{{certification.title}}</h5>
+                      <h5
+                        class="card-title master-item"
+                        data-title="{{ certification.title }}"
+                        data-image="{{ certification.image.url }}"
+                        data-lang="{{ certification.lenguages.choice }}"
+                        data-lang-icon="{{ certification.lenguages.icon.url }}"
+                        data-date="{{ certification.date }}"
+                        data-desc="{{ certification.description }}"
+                        data-url="{{ certification.url }}"
+                         >
+                {{ certification.title }}
+            </h5>
                      <p class="card-text">{{ certification.description }}</p>
                 </div>
             </div>
         </div>
          {% endfor %}
     </div>
-    <div class="col--sm-12 col-md-9 detail">
-       <button id="backBtn" class="d-md-none btn btn-primary">Back</button>
-    </div>
-</div>
+    <div class="col-12 col-md-9 detail">
+      
 
-<!--<div class="container">
+        <!--<div class="container">
     <div class="container my-4">
         <div class="card shadow-lg border-0 bg-dark text-white">
         <div class="container">
@@ -63,7 +72,6 @@
         </div>
     </div>-->
 
-    <div class="col-10 s-detail">
-       <button id="backBtn" class="hidden-md">back</button>
-    </div>
+
+</div>
 {% endblock %}  
