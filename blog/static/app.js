@@ -14,10 +14,10 @@ masterItems.forEach(item => {
 
         // quitar activo
         masterItems.forEach(i =>
-            i.classList.remove('active-item')
+            i.classList.remove('master-item')
         );
 
-        this.classList.add('active-item');
+        this.classList.add('master-item');
 
         // llenar detail panel
         titleEl.textContent = this.dataset.title;
