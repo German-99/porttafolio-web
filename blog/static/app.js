@@ -13,8 +13,8 @@ masterItems.forEach(item => {
     item.addEventListener('click', function () {
 
         // quitar activo
-        masterItems.forEach(i =>
-            i.classList.remove('master-item')
+        masterItems.forEach(item =>
+            item.classList.remove('master-item')
         );
 
         this.classList.add('master-item');
