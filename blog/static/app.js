@@ -1,4 +1,7 @@
 const masterItems = document.querySelectorAll('.master-item');
+const master = document.querySelector('.master');
+const detail = document.querySelector('.detail');
+const backBtn = document.getElementById('backBtn');
 
 const titleEl = document.getElementById('detailTitle');
 const imgEl = document.getElementById('detailImage');
@@ -12,12 +15,9 @@ masterItems.forEach(item => {
 
     item.addEventListener('click', function () {
 
-        // quitar activo
-        masterItems.forEach(item =>
-            item.classList.remove('master-item')
-        );
-
-        this.classList.add('master-item');
+        // quitar activo visual (si luego usas active-item)
+        masterItems.forEach(i => i.classList.remove('active-item'));
+        this.classList.add('active-item');
 
         // llenar detail panel
         titleEl.textContent = this.dataset.title;
@@ -42,6 +42,12 @@ masterItems.forEach(item => {
             linkEl.classList.remove('d-none');
         } else {
             linkEl.classList.add('d-none');
+        }
+
+        // 🔴 🔴 🔴 ESTE ES EL IF
+        if (window.innerWidth < 768) {
+            master.classList.add('d-none');
+            detail.classList.remove('d-none');
         }
 
     });

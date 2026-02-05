@@ -189,16 +189,24 @@ footer {
 
 #backBtn {
     position: absolute;
-    top: 0;
-    left: 1;
+    top: 1px;
+    left: 10px;
     padding: 5px 10px;
+    z-index: 11;
 }
 
-
-
-
-.master {
+.hidden-md-down{
     display: none;
+}
+
+.hidden-mobile {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hidden-mobile {
+        display: block !important;
+    }
 }
 
 @media (min-width: 768px) {
@@ -207,4 +215,9 @@ footer {
     }
 }
 
+@media (max-width: 767px) {
+    .detail {
+        display: none;
+    }
+}
 
