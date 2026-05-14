@@ -44,12 +44,30 @@ masterItems.forEach(item => {
             linkEl.classList.add('d-none');
         }
 
-        // 🔴 🔴 🔴 ESTE ES EL IF
-        if (window.innerWidth < 768) {
-            master.classList.add('d-none');
-            detail.classList.remove('d-none');
+         if (window.innerWidth < 768) {
+
+            master.classList.add('hide-master');
+            master.classList.remove('show-master');
+
+            detail.classList.add('show-detail');
+            detail.classList.remove('hide-detail');
+
         }
 
     });
 
 });
+
+function back() {
+
+    if (window.innerWidth < 768) {
+
+        master.classList.remove('hide-master');
+        master.classList.add('show-master');
+
+        detail.classList.remove('show-detail');
+        detail.classList.add('hide-detail');
+
+    }
+
+}

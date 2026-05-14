@@ -11,14 +11,14 @@
 
 <div class="container-fluid cont-mast">
     <div class="row">
-        <div class="col-12 col-md-3 master">
+        <div class="col-12 col-md-3 master hidden-mobile">
             {% for certification in certifications %}
                 <div class="card bg-dark text-white mb-3 px-1">
                     <div class="row py-3 align-items-center">
-                        <div class="col-12 col-md-2 mb-3 text-center">
+                        <div class="col-2 col-md-2 mb-3 text-center">
                             <img src="{{certification.lenguages.icon.url}}" class="img-fluid" alt="certificates" style="max-width: 40px;">
                         </div>
-                        <div class="col-12 col-md-10 px-4">
+                        <div class="col-10 col-md-10 px-4">
                             <h5
                             class="card-title master-item"
                                 data-title="{{ certification.title }}"
@@ -36,6 +36,7 @@
                 </div>
             {% endfor %}
         </div>
+        
         <div class="col-12 col-md-9 detail d-flex justify-content-center" >
             <button id="backBtn" class="btn btn-primary d-block d-md-none mb-5" onclick="back()">Back</button>
             <div class="container mb-5">

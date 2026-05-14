@@ -186,38 +186,66 @@ footer {
 }
 
 
-
 #backBtn {
     position: absolute;
     top: 1px;
-    left: 10px;
+    left: 5px;
     padding: 5px 10px;
     z-index: 11;
 }
 
-.hidden-md-down{
+.master {
     display: none;
 }
 
-.hidden-mobile {
+.detail {
+    display: block;
+}
+
+.show-master {
+    display: block !important;
+}
+
+.hide-detail {
     display: none !important;
 }
 
 @media (min-width: 768px) {
-    .hidden-mobile {
+
+    /* En desktop siempre visibles */
+    .master {
         display: block !important;
     }
-}
 
-@media (min-width: 768px) {
-    .master {
-        display: block;
+    .detail {
+        display: block !important;
+    }
+
+    /* Las clases JS no afectan desktop */
+    .show-master,
+    .hide-detail {
+        all: unset;
     }
 }
 
 @media (max-width: 767px) {
-    .detail {
-        display: none;
+
+    .hide-master {
+        display: none !important;
     }
+
+    .show-master {
+        display: block !important;
+    }
+
+    .hide-detail {
+        display: none !important;
+    }
+
+    .show-detail {
+        display: block !important;
+    }
+
 }
+
 
