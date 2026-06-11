@@ -71,3 +71,7 @@ function back() {
     }
 
 }
+
+if (masterItems.length > 0) {
+    masterItems[0].click();
+}

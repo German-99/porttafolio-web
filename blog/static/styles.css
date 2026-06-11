@@ -172,13 +172,18 @@ footer {
 }
 
 #hover-link:hover {
-     color: aqua;
+     color: aqua !important;
 }
 
 .master-item:hover {
     color: aqua;
-    text-decoration: underline;
+    text-decoration: underline !important;
     cursor: pointer;
+}
+
+.master-item.active-item {
+    color: aqua !important; /* Color azul de Bootstrap (cámbialo por el tono de azul que gustes) */
+    text-decoration: underline !important;
 }
 
 .cont-mast {
