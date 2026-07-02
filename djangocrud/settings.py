@@ -87,13 +87,22 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-        'default':  dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost/postgres',
+if DEBUG:
+    # Local Development Environment -> Use SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # Production Environment (Render) -> Use Supabase Postgres
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config("DATABASE_URL"),
             conn_max_age=600
         )
     }
-DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 
@@ -143,10 +152,9 @@ STATICFILES_DIRS = [
 if DEBUG:
     STORAGES = {
         # Las imágenes subidas van a Cloudinary
-        "default": {
-            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+         "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
-        # Los archivos CSS/JS locales se cargan de forma normal (evita caché molesto al programar)
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
