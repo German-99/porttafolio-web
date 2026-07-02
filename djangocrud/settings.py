@@ -168,9 +168,11 @@ else:
         },
         # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+            "BACKEND": "whitenoise.storage.StaticFilesStorage",
         },
     }
+
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
@@ -178,8 +180,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 
-
-STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 MEDIA_URL = '/media/'
 
