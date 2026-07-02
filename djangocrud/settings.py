@@ -168,7 +168,7 @@ else:
         },
         # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
 
@@ -178,7 +178,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 
-WHITENOISE_MANIFEST_STRICT = False
 
 STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
