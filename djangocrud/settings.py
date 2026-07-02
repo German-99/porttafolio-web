@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import sys
 from decouple import config
 
 
@@ -149,6 +150,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'blog' / 'static',
 ]
 
+IS_COLLECTSTATIC = 'collectstatic' in sys.argv
+
 if DEBUG:
     STORAGES = {
          "default": {
@@ -158,19 +161,32 @@ if DEBUG:
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 else:
-    STORAGES = {
-        "default": {
-            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-        },
-        # WhiteNoise para Django 5.x utiliza este backend exacto
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-        },
-    }
+    if IS_COLLECTSTATIC:
+        STORAGES = {
+            "default": {
+                "BACKEND": "django.core.files.storage.FileSystemStorage",
+            },
+            # WhiteNoise para Django 5.x utiliza este backend exacto
+            "staticfiles": {
+                "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            },
+        }
+        STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    else:
+        STORAGES = {
+            "default": {
+                "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+            },
+
+            "staticfiles": {
+                "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+            },
+        }
+        STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
