@@ -168,7 +168,7 @@ else:
         },
         # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
         "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
         },
     }
 
