@@ -159,16 +159,26 @@ STATICFILES_FINDERS = [
 ]
 
 if DEBUG:
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 else:
-    # 🛠️ Esto obliga a Django a compilar de forma limpia localmente en Render
-    # sin activar los procesadores estrictos de WhiteNoise que tiran el error.
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-
-# Configuración básica para archivos multimedia (Cloudinary)
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-        
+     STORAGES = {
+        # Tus imágenes subidas por el admin van a Cloudinary de forma segura
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        # WhiteNoise procesa, comprime y sirve tus CSS/JS locales en Render
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
+   
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
