@@ -172,7 +172,7 @@ else:
         },
     }
 
-STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
+STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
