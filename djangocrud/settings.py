@@ -143,15 +143,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'blog', 'static')
+    BASE_DIR / 'blog' / 'static',
 ]
 
 if DEBUG:
     STORAGES = {
-        # Las imágenes subidas van a Cloudinary
          "default": {
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
@@ -162,17 +161,15 @@ if DEBUG:
 
 else:
     STORAGES = {
-        # Las imágenes subidas van a Cloudinary
         "default": {
             "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
-        # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
+        # WhiteNoise para Django 5.x utiliza este backend exacto
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.StaticFilesStorage",
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
     }
 
-STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
@@ -183,7 +180,7 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
