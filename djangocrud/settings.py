@@ -151,7 +151,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'blog' / 'static',
 ]
 
-IS_COLLECTSTATIC = 'collectstatic' in sys.argv
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -160,7 +159,7 @@ STATICFILES_FINDERS = [
 
 if DEBUG:
     STORAGES = {
-         "default": {
+        "default": {
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
@@ -168,31 +167,17 @@ if DEBUG:
         },
     }
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-
 else:
-    if IS_COLLECTSTATIC:
-        STORAGES = {
-            "default": {
-                "BACKEND": "django.core.files.storage.FileSystemStorage",
-            },
-            # WhiteNoise para Django 5.x utiliza este backend exacto
-            "staticfiles": {
-                "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-            },
-        }
-        STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-
-    else:
-        STORAGES = {
-            "default": {
-                "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-            },
-
-            "staticfiles": {
-                "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-            },
-        }
-        STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    # 🛠️ EN PRODUCCIÓN: Configuración fija para que WhiteNoise cree el índice de archivos
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
         
 
 CLOUDINARY_STORAGE = {
