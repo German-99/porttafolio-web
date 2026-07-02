@@ -153,6 +153,11 @@ STATICFILES_DIRS = [
 
 IS_COLLECTSTATIC = 'collectstatic' in sys.argv
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 if DEBUG:
     STORAGES = {
          "default": {
@@ -188,6 +193,7 @@ else:
             },
         }
         STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+        
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
