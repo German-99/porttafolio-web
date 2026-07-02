@@ -152,32 +152,22 @@ STATICFILES_DIRS = [
 ]
 
 
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 if DEBUG:
-    STORAGES = {
-        "default": {
-            "BACKEND": "django.core.files.storage.FileSystemStorage",
-        },
-        "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-        },
-    }
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 else:
-    # 🛠️ EN PRODUCCIÓN: Configuración fija para que WhiteNoise cree el índice de archivos
-    STORAGES = {
-        "default": {
-            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-        },
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-        },
-    }
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    # 🛠️ Esto obliga a Django a compilar de forma limpia localmente en Render
+    # sin activar los procesadores estrictos de WhiteNoise que tiran el error.
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
+# Configuración básica para archivos multimedia (Cloudinary)
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
         
 
 CLOUDINARY_STORAGE = {
