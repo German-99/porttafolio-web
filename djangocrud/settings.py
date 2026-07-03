@@ -178,7 +178,8 @@ else:
             "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
         },
     }
-   
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"   
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
