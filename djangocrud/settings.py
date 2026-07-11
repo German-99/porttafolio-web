@@ -104,7 +104,34 @@ else:
         )
     }
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
 
+if DEBUG:
+    STORAGES = {
+        # Las imágenes subidas van a Cloudinary
+         "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+
+else:
+    STORAGES = {
+        # Las imágenes subidas van a Cloudinary
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 
 # Password validation
@@ -143,40 +170,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-if DEBUG:
-    STORAGES = {
-        # Las imágenes subidas van a Cloudinary
-         "default": {
-            "BACKEND": "django.core.files.storage.FileSystemStorage",
-        },
-        "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-        },
-    }
-
-else:
-    STORAGES = {
-        # Las imágenes subidas van a Cloudinary
-        "default": {
-            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-        },
-        # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        },
-    }
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': config('CLOUDINARY_API_KEY'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET'),
-}
 
 MEDIA_URL = '/media/'
 
