@@ -112,26 +112,24 @@ CLOUDINARY_STORAGE = {
 
 if DEBUG:
     STORAGES = {
-        # Las imágenes subidas van a Cloudinary
-         "default": {
+        "default": {
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
-
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 else:
     STORAGES = {
-        # Las imágenes subidas van a Cloudinary
         "default": {
             "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
-        # WhiteNoise optimiza y comprime tus CSS/JS en el servidor de Render
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "djangocrud.storages.SilentCollectstaticStorage",
         },
     }
+    STATICFILES_STORAGE = 'djangocrud.storages.SilentCollectstaticStorage'
 
 
 # Password validation
@@ -173,14 +171,6 @@ STATIC_URL = '/static/'
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
 
 MEDIA_URL = '/media/'
 
