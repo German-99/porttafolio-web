@@ -128,10 +128,10 @@ else:
             "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
         "staticfiles": {
-            "BACKEND": "djangocrud.storages.SilentCollectstaticStorage",
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
         },
     }
-    STATICFILES_STORAGE = 'djangocrud.storages.SilentCollectstaticStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 # Password validation
@@ -183,3 +183,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+WHITENOISE_MANIFEST_STRICT = False
+
