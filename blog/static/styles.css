@@ -179,11 +179,11 @@ footer {
     color: aqua;
     text-decoration: underline !important;
     cursor: pointer;
+    transition: color 0.5s ease;
 }
 
 .master-item.active-item {
     color: aqua !important; /* Color azul de Bootstrap (cámbialo por el tono de azul que gustes) */
-    text-decoration: underline !important;
 }
 
 .cont-mast {
@@ -218,6 +218,16 @@ footer {
 
 .btn-group .dropdown-menu {
     text-align: center;
+}
+
+.card-title a.text-white {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.card-title a.text-white:hover {
+    color: aqua !important;
+    text-decoration: underline;
 }
 
 @media (min-width: 992px) {
