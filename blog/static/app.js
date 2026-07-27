@@ -44,7 +44,7 @@ masterItems.forEach(item => {
             linkEl.classList.add('d-none');
         }
 
-         if (window.innerWidth < 768) {
+         if (window.innerWidth < 992) {
 
             master.classList.add('hide-master');
             master.classList.remove('show-master');
@@ -60,7 +60,7 @@ masterItems.forEach(item => {
 
 function back() {
 
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 992) {
 
         master.classList.remove('hide-master');
         master.classList.add('show-master');
