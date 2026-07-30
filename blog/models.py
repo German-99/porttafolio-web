@@ -13,6 +13,7 @@ class Project(models.Model):
     gif = ImageField(upload_to= 'images/gifs')
     date = DateField(null=True, blank=True)
     url = URLField(blank=True)
+    demo = URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.title 
